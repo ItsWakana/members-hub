@@ -13,21 +13,24 @@
         <form class="sign-up-form" action="/sign-up" method="POST">
             <div>
                 <label for="firstName">First Name</label>
-                <input name="firstName" type="text">
+                <input name="firstName" type="text" 
+                value="<%=typeof firstName === 'undefined' ? '' : firstName%>">
             </div>
             <div>
                 <label for="lastName">Last Name</label>
-                <input name="lastName" type="text">
+                <input name="lastName" type="text" 
+                value="<%=typeof lastName === 'undefined' ? '' : lastName%>">
             </div>
             <div>
                 <label for="username">Username</label>
-                <input name="username" type="text">
+                <input name="username" type="text" 
+                value="<%=typeof username === 'undefined' ? '' : username%>">
             </div>
             <div>
                 <label for="password">Password</label>
                 <input name="password" type="password">
             </div>
-            <button>Sign Up</button>
+            <button type="submit">Sign Up</button>
         </form>
     </div>
 </body>
