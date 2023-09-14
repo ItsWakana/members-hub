@@ -9,6 +9,10 @@ const signup_get = asyncHandler( async(req, res) => {
     res.render("sign-up-form")
 });
 
+const signin_get = asyncHandler( async(req, res) => {
+    res.render("sign-in-form");
+});
+
 const signup_post = [
  
     body("firstName", "First name must not be empty")
@@ -79,9 +83,9 @@ const signinAuthStrategy = new LocalStrategy(async (username, password, done) =>
 
         if (!passComparison) {
             return done(null, false);
-        } else {
-            return done(null, user);
-        }
+        } 
+        return done(null, user);
+
     } catch(err) {
         console.log(err);
     }
@@ -89,5 +93,7 @@ const signinAuthStrategy = new LocalStrategy(async (username, password, done) =>
 
 module.exports = {
     signup_get,
-    signup_post
+    signup_post,
+    signin_get,
+    signinAuthStrategy
 };
