@@ -45,30 +45,46 @@ const signup_post = [
                 lastName,
                 username
             });
-        } else {
-            bcrypt.hash(password, 10, async (err, hash) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    const user = new User({
-                        firstName,
-                        lastName,
-                        accountCreatedAt: new Date(),
-                        username,
-                        password: hash,
-                        hasMemeberStatus: false
-                    });
-                    await user.save();
-                    res.redirect("/");
-                }
-            })
         }
 
+        try {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const user = new User({
+                firstName,
+                lastName,
+                accountCreatedAt: new Date(),
+                username,
+                password: hashedPassword,
+                hasMemeberStatus: false
+            });
+            await user.save();
+            res.redirect("/");
+            
+        } catch(err) {
+            console.log(err);
+        }
     })
 ]
 
 const signinAuthStrategy = new LocalStrategy(async (username, password, done) => {
-    
+
+    try {
+        const user = await User.findOne({ username: username });
+        
+        if (!user) {
+            return done(null, false);
+        }
+
+        const passComparison = await bcrypt.compare(password, user.password);
+
+        if (!passComparison) {
+            return done(null, false);
+        } else {
+            return done(null, user);
+        }
+    } catch(err) {
+        console.log(err);
+    }
 })
 
 module.exports = {
