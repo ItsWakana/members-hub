@@ -2,14 +2,12 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const session = require("express-session");
-const passport = require("passport");
+const passport = require("./helper functions/passport-config");
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const runDatabaseConnection = require("./helper functions/databaseConnect");
-const { signinAuthStrategy } = require("./controllers/authController");
 
 const indexRouter = require("./routes/index");
-const User = require('./models/User');
 
 const app = express();
 
@@ -19,21 +17,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
-
-passport.use(signinAuthStrategy);
-
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser( async (id, done) => {
-  try {
-    const user = await User.findById(id);
-    done(null, user);
-  } catch(err) {
-    done(err);
-  }
-});
 
 app.use(passport.initialize());
 app.use(passport.session());

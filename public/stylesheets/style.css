@@ -38,7 +38,8 @@ h1 {
   color: gray;
 }
 
-form input {
+form input,
+form textarea {
   padding: 15px 12px 10px 5px;
   border-radius: 5px;
   border: solid 2px rgb(77, 76, 83);
@@ -53,11 +54,13 @@ input:-webkit-autofill:active{
   background: rgb(67, 66, 73);
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   outline: solid 2px rgb(223, 102, 46);
 }
 
-.sign-up-form button {
+.sign-up-form button,
+button {
   border-radius: 20px;
   border: none;
   background: rgb(223, 102, 46);
@@ -66,3 +69,7 @@ input:focus {
   padding: 12px;
 }
 
+button a {
+  text-decoration: none;
+  color: white;
+}

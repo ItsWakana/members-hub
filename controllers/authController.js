@@ -29,11 +29,14 @@ const signup_post = [
         .escape(),
     body("password", "Password must not be empty")
         .trim()
-        .isLength({ min: 1 })
+        .isLength({ min: 5 })
         .escape(),
+    body("passwordConfirm")
+        .custom((value, { req }) => {
+            return value === req.body.password;
+        }),
     
     asyncHandler( async (req, res) => {
-
         const errors = validationResult(req);
 
         const {

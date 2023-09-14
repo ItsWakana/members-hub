@@ -6,6 +6,30 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <%if (!user) {%>
+    <p>Welcome anonymous user!</p>
+    <%} else {%>
+      <p>Welcome to Members Hub <%=user.firstName%>!</p>
+      <%}%>
+
+      <% if (!user) {%>
+        <button><a href="/sign-in">Sign in</a></button>
+      <%} else {%>
+        <button><a href="/log-out">Log out</a></button>
+        <%}%>
+
+    <% if (user) {%>
+      <form class="sign-up-form" action="/send-message" method="POST">
+        <div>
+            <label for="title">Title</label>
+            <input name="title" type="text">
+        </div>
+        <div>
+            <label for="message">Message</label>
+            <textarea name="message" id="" cols="30" rows="10"></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+    </form>
+    <%}%>
   </body>
 </html>
