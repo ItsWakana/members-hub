@@ -5,7 +5,25 @@ body {
   align-items: center;
   padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: rgb(36, 35, 41);
+  background: rgb(45, 45, 46);
+}
+
+::-webkit-scrollbar {
+
+  width: 0.8em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(37, 37, 37);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(223, 102, 46);
+  border-radius: 10px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 a {
@@ -81,13 +99,34 @@ button a {
 .message-list {
   display: flex;
   flex-direction: column;
+  padding: 0 30px;
+  width: 40%;
+  min-width: 300px;
   gap: 20px;
   list-style: none;
-  padding: 0;
+  max-height: 360px;
+  overflow: scroll;
+  overflow-x:hidden;
 }
 
 .message-list li {
   padding: 15px;
-  background-color: rgb(143, 136, 180);
-  border-radius: 13px;
+  background-color: rgb(37, 37, 37);
+  color: white;
+  border: solid 1px rgb(49, 49, 49);
+  border-radius: 16px;
+}
+
+.message-list li:nth-child(even) {
+  align-self: left;
+  text-align: left;
+  min-width: 200px;
+  width: 70%;
+
+}
+
+.message-list li:nth-child(odd) {
+  align-self: flex-end;
+  width: 50%;
+  min-width: 160px;
 }

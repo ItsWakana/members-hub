@@ -16,11 +16,11 @@
     <ul class="message-list">
       <%messages.map((message) => { %>
         <li>
-          <p><b><%=message.title%></b></p>
-          <p><%=message.messageContent%></p>
+          <p><b><%-message.title%></b></p>
+          <p><%-message.messageContent%></p>
           <%if (user) {%>
           <p><b><%=message.createdAt%></b></p>
-          <p><i><%=message.author.firstName%></i></p>
+          <p><i><%-message.author.firstName + ' ' + message.author.lastName%></i></p>
           <%}%>
         </li>
       <%})%>
