@@ -15,11 +15,12 @@ body {
 
 ::-webkit-scrollbar-track {
   background-color: rgb(37, 37, 37);
+  border-radius: 100vw;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(223, 102, 46);
-  border-radius: 10px;
+  background-color: rgb(67, 66, 73);
+  border-radius: 100vw;
 }
 
 *, *::before, *::after {
@@ -110,11 +111,11 @@ button a {
 }
 
 .message-list li {
-  padding: 15px;
+  padding: 20px;
   background-color: rgb(37, 37, 37);
   color: white;
   border: solid 1px rgb(49, 49, 49);
-  border-radius: 16px;
+  border-radius: 25px;
 }
 
 .message-list li:nth-child(even) {
@@ -122,6 +123,7 @@ button a {
   text-align: left;
   min-width: 200px;
   width: 70%;
+  border-bottom-right-radius: 0px;
 
 }
 
@@ -129,4 +131,28 @@ button a {
   align-self: flex-end;
   width: 50%;
   min-width: 160px;
+  border-bottom-left-radius: 0px;
+
+}
+.message-list li > p:nth-child(1) {
+  margin: 0;
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
+
+.message-list li > p:nth-child(2) {
+
+  font-size: 0.8rem;
+}
+
+
+.message-list li > hr {
+  opacity: 10%;
+  height: 1px;
+}
+
+.message-list li > p:nth-child(4),
+.message-list li > p:nth-child(5) {
+  font-size: 0.6rem;
+
 }

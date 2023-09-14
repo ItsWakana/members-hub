@@ -18,6 +18,7 @@
         <li>
           <p><b><%-message.title%></b></p>
           <p><%-message.messageContent%></p>
+          <hr>
           <%if (user) {%>
           <p><b><%=message.createdAt%></b></p>
           <p><i><%-message.author.firstName + ' ' + message.author.lastName%></i></p>
