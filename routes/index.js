@@ -1,5 +1,6 @@
 const express = require("express");
 const { signup_get, signup_post, signin_get } = require("../controllers/authController");
+const sendMessage_post = require("../controllers/messageController");
 const passport = require("passport");
 const router = express.Router();
 
@@ -31,5 +32,7 @@ router.get("/log-out", (req, res, next) => {
       res.redirect("/");
     });
 });
+
+router.post("/send-message", sendMessage_post);
 
 module.exports = router;

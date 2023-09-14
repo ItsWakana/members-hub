@@ -1,4 +1,8 @@
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: rgb(36, 35, 41);

@@ -6,27 +6,24 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <%if (!user) {%>
-    <p>Welcome anonymous user!</p>
-    <%} else {%>
-      <p>Welcome to Members Hub <%=user.firstName%>!</p>
-      <%}%>
 
-      <% if (!user) {%>
-        <button><a href="/sign-in">Sign in</a></button>
-      <%} else {%>
-        <button><a href="/log-out">Log out</a></button>
-        <%}%>
+    <% if (!user) {%>
+      <button><a href="/sign-in">Sign in</a></button>
+    <%} else {%>
+      <button><a href="/log-out">Log out</a></button>
+      <%}%>
 
     <% if (user) {%>
       <form class="sign-up-form" action="/send-message" method="POST">
         <div>
             <label for="title">Title</label>
-            <input name="title" type="text">
+            <input name="title" type="text"
+            value="<%=typeof messageTitle === 'undefined' ? '' : messageTitle%>">
         </div>
         <div>
             <label for="message">Message</label>
-            <textarea name="message" id="" cols="30" rows="10"></textarea>
+            <textarea name="message" id="" cols="30" rows="10"
+            value="<%=typeof message === 'undefined' ? '' : message%>"></textarea>
         </div>
         <button type="submit">Send Message</button>
     </form>
