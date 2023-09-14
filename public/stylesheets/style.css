@@ -40,13 +40,15 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .sign-up-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: min-content;
+  width: 25%;
+  min-width: 230px;
 }
 
 .sign-up-form > div {
@@ -68,6 +70,7 @@ form textarea {
   border: solid 2px rgb(77, 76, 83);
   background-color: rgb(67, 66, 73);
   color: white;
+  width: 100%;
 }
 
 input:-webkit-autofill,
@@ -154,5 +157,9 @@ button a {
 .message-list li > p:nth-child(4),
 .message-list li > p:nth-child(5) {
   font-size: 0.6rem;
+}
 
+.author-btn {
+  font-size: 0.7rem;
+  padding: 5px 7px;
 }

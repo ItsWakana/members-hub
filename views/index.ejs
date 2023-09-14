@@ -22,6 +22,8 @@
           <%if (user) {%>
           <p><b><%=message.createdAt%></b></p>
           <p><i><%-message.author.firstName + ' ' + message.author.lastName%></i></p>
+          <%} else {%>
+            <button class="author-btn"><a href="/sign-in">Sign in to view message author!</a></button>
           <%}%>
         </li>
       <%})%>
