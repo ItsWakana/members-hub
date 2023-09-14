@@ -1,14 +1,16 @@
 const express = require("express");
 const { signup_get, signup_post, signin_get } = require("../controllers/authController");
-const sendMessage_post = require("../controllers/messageController");
+const { sendMessage_post, messageList_get } = require("../controllers/messageController");
 const passport = require("passport");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    res.render('index', {
-        user: req.user
-    });
-});
+// router.get("/", (req, res) => {
+//     res.render('index', {
+//         user: req.user
+//     });
+// });
+
+router.get("/", messageList_get);
 
 router.post("/sign-up", signup_post);
 
@@ -34,5 +36,7 @@ router.get("/log-out", (req, res, next) => {
 });
 
 router.post("/send-message", sendMessage_post);
+
+router.get("/messages", )
 
 module.exports = router;

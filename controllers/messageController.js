@@ -16,7 +16,6 @@ const sendMessage_post = [
         .isLength({ min: 5 })
         .escape(),
     
-
     asyncHandler( async (req, res, next) => {
 
         const errors = validationResult(req);
@@ -55,4 +54,21 @@ const sendMessage_post = [
     })
 ]
 
-module.exports = sendMessage_post;
+const messageList_get = asyncHandler( async(req, res, next) => {
+
+    //we only want to render the chat box when there actually is a user. 
+
+    //otherwise just render the message history normally.
+
+    const fetchedMessages = await Message.find({}).populate("author");
+
+    res.render("index", {
+        user: req.user,
+        messages: fetchedMessages
+    });
+})
+
+module.exports = {
+    sendMessage_post,
+    messageList_get
+};
