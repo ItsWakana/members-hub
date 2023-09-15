@@ -8,6 +8,7 @@ const logger = require('morgan');
 const runDatabaseConnection = require("./helper functions/databaseConnect");
 
 const indexRouter = require("./routes/index");
+const messageRouter = require("./routes/messages");
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
   next();
 })
 app.use("/", indexRouter);
+app.use("/messages", messageRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));

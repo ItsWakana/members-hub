@@ -29,6 +29,11 @@
             <%-message.author.firstName + ' ' + message.author.lastName%>
             <%}%>
           </i></p>
+          <%if (user.hasMemberStatus) {%>
+              <form action="/messages/<%=message._id%>/delete" method="POST">
+                <button class="author-btn">Delete</button>
+              </form>
+              <%}%>
           <%} else {%>
             <button class="author-btn"><a href="/sign-in">Sign in to view message author!</a></button>
           <%}%>

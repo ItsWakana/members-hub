@@ -66,9 +66,21 @@ const messageList_get = asyncHandler( async(req, res, next) => {
         user: req.user,
         messages: fetchedMessages
     });
-})
+});
+
+const messageDelete_post = asyncHandler( async(req, res) => {
+
+    const { messageId } = req.params;
+
+    if (mongoose.isValidObjectId(messageId)) {
+        await Message.findByIdAndDelete(messageId);
+    }
+
+    res.redirect("/messages");
+});
 
 module.exports = {
     sendMessage_post,
-    messageList_get
+    messageList_get,
+    messageDelete_post
 };
