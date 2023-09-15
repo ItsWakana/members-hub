@@ -4,6 +4,7 @@ const asyncHandler = require("express-async-handler");
 const LocalStrategy = require("passport-local").Strategy;
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const Admin = require("../models/Admin");
 
 const signup_get = asyncHandler( async(req, res) => {
     res.render("sign-up-form")
@@ -62,7 +63,7 @@ const signup_post = [
                 accountCreatedAt: new Date(),
                 username,
                 password: hashedPassword,
-                hasMemeberStatus: false
+                hasMemberStatus: false
             });
             await user.save();
             res.redirect("/");
@@ -92,11 +93,52 @@ const signinAuthStrategy = new LocalStrategy(async (username, password, done) =>
     } catch(err) {
         console.log(err);
     }
-})
+});
+
+const passcode_get = asyncHandler( async(req, res) => {
+    res.render("passcode", {
+        user: req.user || null
+    });
+});
+
+const passcode_post = [
+    body("passcode")
+        .trim()
+        .isLength({ min: 5 }),
+    
+    asyncHandler( async(req, res) => {
+        const errors = validationResult(req);
+
+        const { passcode: userEnteredPass } = req.body;
+
+        if (!errors.isEmpty()) {
+            res.redirect("/passcode");
+        }
+
+        if (!req.user) {
+            res.redirect("/sign-in");
+        }
+
+        const { passcode } = await Admin.findOne();
+
+        const match = await bcrypt.compare(userEnteredPass, passcode);
+
+        if (match) {
+            await User.findByIdAndUpdate(req.user._id, {
+                hasMemberStatus: true
+            });
+            res.redirect("/");
+        }
+        
+        res.redirect("/passcode");
+    })
+]
 
 module.exports = {
     signup_get,
     signup_post,
     signin_get,
-    signinAuthStrategy
+    signinAuthStrategy,
+    passcode_get,
+    passcode_post
 };

@@ -12,6 +12,7 @@
     <%} else {%>
       <button><a href="/log-out">Log out</a></button>
       <%}%>
+      <button><a href="/passcode">Get admin access</a></button>
 
     <ul class="message-list">
       <%messages.map((message) => { %>
@@ -21,7 +22,13 @@
           <hr>
           <%if (user) {%>
           <p><b><%=message.createdAt%></b></p>
-          <p><i><%-message.author.firstName + ' ' + message.author.lastName%></i></p>
+          <p><i>
+            <%if (!message.author) {%>
+              Author account does not exist
+              <%} else {%>
+            <%-message.author.firstName + ' ' + message.author.lastName%>
+            <%}%>
+          </i></p>
           <%} else {%>
             <button class="author-btn"><a href="/sign-in">Sign in to view message author!</a></button>
           <%}%>

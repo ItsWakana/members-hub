@@ -1,5 +1,12 @@
 const express = require("express");
-const { signup_get, signup_post, signin_get } = require("../controllers/authController");
+const { 
+  signup_get, 
+  signup_post, 
+  signin_get,
+  passcode_get, 
+  passcodeSet_post,
+  passcode_post
+} = require("../controllers/authController");
 const { sendMessage_post, messageList_get } = require("../controllers/messageController");
 const passport = require("passport");
 const router = express.Router();
@@ -38,5 +45,9 @@ router.get("/log-out", (req, res, next) => {
 router.post("/send-message", sendMessage_post);
 
 router.get("/messages", )
+
+router.get("/passcode", passcode_get);
+
+router.post("/passcode", passcode_post);
 
 module.exports = router;
