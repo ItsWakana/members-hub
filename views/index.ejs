@@ -6,13 +6,14 @@
   </head>
   <body>
     <h1><%= title %></h1>
-
-    <% if (!user) {%>
-      <button><a href="/sign-in">Sign in</a></button>
-    <%} else {%>
-      <button><a href="/log-out">Log out</a></button>
-      <%}%>
-      <button><a href="/passcode">Get admin access</a></button>
+    <div class="nav-panel">
+      <% if (!user) {%>
+        <button><a href="/sign-in">Sign in</a></button>
+      <%} else {%>
+        <button><a href="/log-out">Log out</a></button>
+        <%}%>
+        <button><a href="/passcode">Get admin access</a></button>
+    </div>
 
     <ul class="message-list">
       <%messages.map((message) => { %>

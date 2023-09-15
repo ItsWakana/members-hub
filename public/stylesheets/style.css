@@ -33,7 +33,16 @@ a {
 
 h1 {
   text-align: center;
+}
+
+p, h1 {
   color: white;
+}
+form p {
+  text-align: center;
+}
+a.sign-up {
+  color: rgb(223, 102, 46);
 }
 
 .form-wrapper {
@@ -43,6 +52,10 @@ h1 {
   width: 100%;
 }
 
+.nav-panel {
+  display: flex;
+  gap: 20px;
+}
 .sign-up-form {
   display: flex;
   flex-direction: column;

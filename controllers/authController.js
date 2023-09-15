@@ -111,13 +111,14 @@ const passcode_post = [
 
         const { passcode: userEnteredPass } = req.body;
 
+        if (!req.user) {
+            res.redirect("/sign-in");
+        }
+        
         if (!errors.isEmpty()) {
             res.redirect("/passcode");
         }
 
-        if (!req.user) {
-            res.redirect("/sign-in");
-        }
 
         const { passcode } = await Admin.findOne();
 
