@@ -38,7 +38,7 @@ router.get("/log-out", (req, res, next) => {
 
 router.post("/send-message", sendMessage_post);
 
-router.get("/messages", )
+router.get("/messages", messageList_get);
 
 router.get("/passcode", passcode_get);
 
