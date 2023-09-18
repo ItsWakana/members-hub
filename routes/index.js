@@ -11,12 +11,6 @@ const { sendMessage_post, messageList_get } = require("../controllers/messageCon
 const passport = require("passport");
 const router = express.Router();
 
-// router.get("/", (req, res) => {
-//     res.render('index', {
-//         user: req.user
-//     });
-// });
-
 router.get("/", messageList_get);
 
 router.post("/sign-up", signup_post);
@@ -49,5 +43,7 @@ router.get("/messages", )
 router.get("/passcode", passcode_get);
 
 router.post("/passcode", passcode_post);
+
+router.get("*", (req, res) => res.redirect("/"));
 
 module.exports = router;
